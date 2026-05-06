@@ -45,14 +45,16 @@ def run_bot() -> None:
         )
 
         _bot_status["running"] = True
+        print("Bot startup: configuration loaded, launching Pyrogram client...", flush=True)
         bot.run()
     except Exception as exc:
         _bot_status["running"] = False
         _bot_status["error"] = str(exc)
-        print("Bot failed to start:")
+        print(f"Bot failed to start: {exc}", flush=True)
         traceback.print_exc()
 
 if __name__ == "__main__":
+    print("Starting web server and bot process...", flush=True)
     web_thread = threading.Thread(target=run_web_server, daemon=True)
     web_thread.start()
 
