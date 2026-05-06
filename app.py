@@ -62,3 +62,13 @@ if __name__ == "__main__":
 
     # Keep process alive so deployment logs are visible even if bot startup fails.
     web_thread.join()
+    return 0
+
+
+if __name__ == "__main__":
+    try:
+        raise SystemExit(main())
+    except BaseException:
+        print("Fatal startup error in app.py", flush=True)
+        traceback.print_exc()
+        raise
